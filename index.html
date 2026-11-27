@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OITSga qarshi — Bilim eng kuchli himoya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--bg:#0F172A;--card:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--red:#EF4444;--coral:#FB7185;--green:#22C55E;--tx:#E2E8F0;--mu:#94A3B8;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:90px;height:auto}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Plus Jakarta Sans',system-ui,sans-serif;overflow-x:hidden;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:rgba(15,23,42,.85)}
+.blob{position:fixed;border-radius:50%;filter:blur(110px);z-index:-1;opacity:.35}
+.glass{background:var(--card);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:1.25rem}
+.grad{background:linear-gradient(90deg,var(--red),var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{display:inline-block;padding:.85rem 1.5rem;border-radius:999px;font-weight:700;transition:.25s;cursor:pointer;border:1px solid transparent}
+.btn-p{background:linear-gradient(135deg,var(--red),#F43F5E);color:#fff;box-shadow:0 8px 30px rgba(239,68,68,.4)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(239,68,68,.55)}
+.btn-g{border-color:var(--line);color:var(--tx);background:var(--card)}
+.btn-g:hover{border-color:var(--coral);transform:translateY(-3px)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;margin:.75rem auto;max-width:72rem;width:calc(100% - 1.5rem)}
+section{padding:4.5rem 1.25rem;max-width:72rem;margin:0 auto}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;line-height:1.15;margin-bottom:.6rem}
+.sub{color:var(--mu);max-width:42rem;margin-bottom:2.2rem}
+.rv{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.float{animation:fl 5s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(239,68,68,.55))}
+@keyframes fl{0%,100%{transform:translateY(0) rotateY(-18deg) rotateZ(-4deg)}50%{transform:translateY(-22px) rotateY(18deg) rotateZ(4deg)}}
+.pulse{animation:pl 3s ease-in-out infinite}
+@keyframes pl{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.15);opacity:.8}}
+.hov{transition:.3s}.hov:hover{transform:translateY(-6px);border-color:rgba(251,113,133,.6)}
+.tab{padding:.7rem 1.4rem;border-radius:999px;font-weight:700;border:1px solid var(--line);background:var(--card);color:var(--mu);cursor:pointer;transition:.25s}
+.tab.on-r{background:rgba(239,68,68,.18);border-color:var(--red);color:#fff}
+.tab.on-g{background:rgba(34,197,94,.18);border-color:var(--green);color:#fff}
+.item{display:flex;gap:.9rem;align-items:flex-start;padding:1.1rem;border-radius:1rem;animation:pop .45s both}
+.item.r{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.35)}
+.item.g{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.35)}
+.item .ic{font-size:1.9rem;line-height:1}
+@keyframes pop{from{opacity:0;transform:scale(.92) translateY(14px)}to{opacity:1;transform:none}}
+.flip{perspective:1000px;height:15rem;background:none;border:0;padding:0;text-align:left;color:inherit;cursor:pointer;font:inherit}
+.fi{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.flip.open .fi{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:1.4rem;display:flex;flex-direction:column;justify-content:space-between;overflow:auto}
+.back{transform:rotateY(180deg);background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.45)}
+.tag{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.opt{display:block;width:100%;text-align:left;padding:.95rem 1.1rem;margin-top:.7rem;border-radius:.9rem;border:1px solid var(--line);background:var(--card);color:var(--tx);cursor:pointer;font:inherit;transition:.2s}
+.opt:hover:not(:disabled){border-color:var(--coral);transform:translateX(4px)}
+.opt.ok{background:rgba(34,197,94,.2);border-color:var(--green)}
+.opt.no{background:rgba(239,68,68,.2);border-color:var(--red)}
+.bar{height:6px;border-radius:9px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--coral));transition:.5s}
+details.fq{padding:1rem 1.25rem;margin-bottom:.8rem}details.fq summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:1rem}details.fq summary::after{content:'+';color:var(--coral);font-size:1.4rem;line-height:1}details.fq[open] summary::after{content:'−'}details.fq p{margin-top:.7rem;color:var(--mu)}input[type=date]{background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:.8rem;padding:.8rem 1rem;font:inherit;color-scheme:dark}.ol li{margin:.35rem 0}
+.num{width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,var(--red),#F43F5E);margin-bottom:1rem}
+a{color:inherit;text-decoration:none}
+.nl a{color:var(--mu);font-weight:500;transition:.2s}.nl a:hover{color:#fff}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="blob" style="width:480px;height:480px;background:#EF4444;top:-120px;left:-140px"></div>
+<div class="blob" style="width:420px;height:420px;background:#FB7185;bottom:10%;right:-140px"></div>
+
+<nav class="glass flex items-center justify-between px-4 py-2.5">
+  <a href="#top" class="flex items-center gap-2 font-extrabold">
+    <svg width="30" height="30" viewBox="0 0 120 120" aria-hidden="true"><use href="#rib"/></svg>
+    <span>OITSga <span class="grad">Qarshi</span></span>
+  </a>
+  <div class="nl hidden lg:flex gap-5 text-sm">
+    <a href="#nima">Nima bu?</a><a href="#yuqish">Yuqish</a><a href="#afsona">Afsonalar</a><a href="#test">Test</a><a href="#yordam">Birinchi yordam</a><a href="#himoya">Himoya</a>
+  </div>
+  <a href="#quiz" class="btn btn-p !py-2 !px-4 text-sm">Tezkor Test</a>
+</nav>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FB7185"/><stop offset="1" stop-color="#DC2626"/></linearGradient>
+    <g id="rib">
+      <path d="M60 14C38 14 32 42 48 60L26 108h18l16-30 16 30h18L72 60C88 42 82 14 60 14Z" fill="url(#rg)"/>
+      <ellipse cx="60" cy="37" rx="8" ry="13" fill="#0F172A"/>
+      <path d="M52 52 64 70M68 52 56 70" stroke="#fff" stroke-opacity=".25" stroke-width="3" fill="none"/>
+    </g>
+  </defs>
+</svg>
+
+<main id="top">
+<!-- HERO -->
+<section class="grid md:grid-cols-2 gap-10 items-center !pt-10 md:!pt-16">
+  <div class="rv">
+    <span class="glass inline-block px-4 py-1.5 text-sm mb-5">❤️ 1-dekabr — Jahon OITSga qarshi kurash kuni</span>
+    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Bilim — eng kuchli himoya. <span class="grad">OITSga qarshi birgamiz!</span></h1>
+    <p class="text-lg mt-5" style="color:var(--mu)">Xabardorlik hayotlarni asraydi. Toʻgʻri maʼlumot qoʻrquvni yoʻq qiladi, qoʻrquv yoʻqolsa — tazyiq va yakkalab qoʻyish ham yoʻqoladi. OIV bilan yashovchilar ham xuddi sen kabi oʻqiydi, ishlaydi, orzu qiladi.</p>
+    <div class="flex flex-wrap gap-3 mt-8">
+      <a href="#nima" class="btn btn-p">Maʼlumotlarni oʻqish</a>
+      <a href="#quiz" class="btn btn-g">Bilimingni sinab koʻr</a>
+    </div>
+  </div>
+  <div class="rv relative grid place-items-center" style="perspective:900px;min-height:22rem">
+    <div class="pulse absolute rounded-full" style="width:18rem;height:18rem;background:radial-gradient(circle,rgba(239,68,68,.55),transparent 70%)"></div>
+    <svg id="ribbon" class="float relative" width="280" height="280" viewBox="0 0 120 120" role="img" aria-label="Qizil tasma"><use href="#rib"/></svg>
+  </div>
+</section>
+
+<!-- NIMA -->
+<section id="nima">
+  <div class="rv"><h2>OIV va OITS <span class="grad">nima?</span></h2>
+  <p class="sub">Bular bir xil narsa emas. Oddiy qilib tushuntiramiz.</p></div>
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="glass hov p-7 rv">
+      <div class="text-4xl mb-3">🦠</div>
+      <span class="tag" style="color:var(--coral)">OIV</span>
+      <h3 class="text-2xl font-extrabold mb-2">Insonning immun tanqisligi virusi</h3>
+      <p style="color:var(--mu)">Bu — organizmning himoya tizimiga (immunitetga) hujum qiladigan virus. OIV bor odam yillar davomida oʻzini yaxshi his qilishi mumkin. Zamonaviy davolash (ART) virusni nazoratda ushlab turadi.</p>
+    </div>
+    <div class="glass hov p-7 rv" style="border-color:rgba(239,68,68,.45)">
+      <div class="text-4xl mb-3">⚠️</div>
+      <span class="tag" style="color:var(--red)">OITS</span>
+      <h3 class="text-2xl font-extrabold mb-2">Orttirilgan immun tanqisligi sindromi</h3>
+      <p style="color:var(--mu)">Bu — davolanmagan OIVning eng ogʻir, kech bosqichi, immunitet juda zaiflashganda paydo boʻladi. Oʻz vaqtida davolanganlarda OITS umuman rivojlanmasligi mumkin.</p>
+    </div>
+  </div>
+  <p class="glass mt-5 p-5 rv"><b class="grad">Esda tut:</b> OIV bor degani — OITS bor degani emas. Erta aniqlash va davolash hayotni toʻliq saqlab qoladi.</p>
+</section>
+
+<!-- YUQISH -->
+<section id="yuqish">
+  <div class="rv"><h2>Qanday yuqadi va <span class="grad">yuqmaydi?</span></h2>
+  <p class="sub">Tugmalarni bos va farqni oʻzing koʻr.</p></div>
+  <div class="flex flex-wrap gap-3 mb-6">
+    <button class="tab on-r" data-t="r">🔴 Yuqish yoʻllari</button>
+    <button class="tab" data-t="g">🟢 Mutlaqo xavfsiz / Yuqmaydi</button>
+  </div>
+  <div id="tabbox" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+</section>
+
+<!-- TEST -->
+<section id="test">
+  <div class="rv"><h2>OIVni qanday <span class="grad">bilib olish mumkin?</span></h2>
+  <p class="sub">Faqat test aniq javob beradi. Alomatlarga qarab xulosa qilib boʻlmaydi — OIV yillar davomida hech qanday belgi bermasligi mumkin.</p></div>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="glass hov p-6 rv"><div class="text-3xl mb-2">⚡</div><h3 class="font-extrabold text-xl mb-2">Tezkor test</h3><p style="color:var(--mu)">Barmoqdan olingan qon yoki soʻlak bilan oʻtkaziladi, natija taxminan 20 daqiqada tayyor boʻladi. Ijobiy chiqsa, laboratoriyada tasdiqlanadi.</p></div>
+    <div class="glass hov p-6 rv"><div class="text-3xl mb-2">🔬</div><h3 class="font-extrabold text-xl mb-2">Laboratoriya testi</h3><p style="color:var(--mu)">Vena qonidan olinadi (IFA). Aniqroq usul: u virusga qarshi hosil boʻlgan moddalarni topadi. Natija odatda bir necha kunda chiqadi.</p></div>
+    <div class="glass hov p-6 rv"><div class="text-3xl mb-2">⏳</div><h3 class="font-extrabold text-xl mb-2">“Deraza davri”</h3><p style="color:var(--mu)">Xavfli holatdan keyin virus testda darrov koʻrinmaydi. Ishonchli natija uchun odatda 4–6 haftadan keyin, yakuniy tasdiq uchun 3 oydan keyin test qilinadi.</p></div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-5 mt-5">
+    <div class="glass p-6 rv"><h3 class="font-extrabold text-xl mb-3">📍 Test jarayoni qanday oʻtadi?</h3>
+      <ol class="ol list-decimal ml-5" style="color:var(--mu)"><li>Hududingdagi OITSga qarshi kurashish markazi yoki poliklinikaga bor.</li><li>Test oldidan qisqa maslahat olasan, savollaringga javob beriladi.</li><li>Qon yoki soʻlak namunasi olinadi.</li><li>Natijani shaxsan va maxfiy tarzda aytishadi.</li><li>Test narxi va anonimlik tartibini markazdan oldindan aniqlashtir.</li></ol></div>
+    <div class="glass p-6 rv"><h3 class="font-extrabold text-xl mb-3">📊 Natijani qanday tushunish kerak?</h3>
+      <p class="mb-2"><b style="color:var(--green)">Manfiy:</b> <span style="color:var(--mu)">virus topilmadi. Xavfli holatdan 3 oy oʻtmagan boʻlsa, testni takrorla.</span></p>
+      <p class="mb-2"><b style="color:var(--red)">Ijobiy:</b> <span style="color:var(--mu)">tasdiqlash testi oʻtkaziladi. Tasdiqlansa, shifokor davolashni boshlaydi. Bu hayotning oxiri emas — davolash bilan odam toʻliq hayot kechiradi.</span></p>
+      <p><b class="grad">U = U:</b> <span style="color:var(--mu)">davolanayotgan va virus miqdori aniqlanmaydigan darajaga tushgan odam jinsiy yoʻl bilan virusni boshqaga yuqtirmaydi.</span></p></div>
+  </div>
+  <div class="glass p-6 md:p-8 mt-5 rv" style="border-color:rgba(239,68,68,.45)">
+    <h3 class="font-extrabold text-xl mb-1">🗓️ Test sanasi hisoblagichi</h3>
+    <p class="mb-4" style="color:var(--mu)">Xavfli holat qachon boʻlgan edi? Sanani tanla — qachon nima qilish kerakligini koʻrsatamiz. (Taxminiy hisob; shifokor maslahati ustun.)</p>
+    <div class="flex flex-wrap gap-3 items-center"><input type="date" id="cd" aria-label="Xavfli holat sanasi"><button class="btn btn-p" id="calc">Hisoblash</button></div>
+    <div id="cout" class="mt-4 grid gap-3" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- BIRINCHI YORDAM -->
+<section id="yordam">
+  <div class="rv"><h2>Birinchi yordam: <span class="grad">nima qilish kerak?</span></h2>
+  <p class="sub">Xavfli holat yuz bersa, vahimaga tushma. Birinchi soatlar muhim — har bir holat uchun qadamlar:</p></div>
+  <div class="glass p-5 mb-5 rv" style="border-color:rgba(239,68,68,.6);background:rgba(239,68,68,.1)"><b class="grad text-lg">⏱️ Eng muhim qoida:</b> <span>PEP deb ataladigan oldini oluvchi davo xavfli holatdan keyin <b>72 soat ichida</b>, iloji boricha dastlabki soatlarda boshlanishi kerak. Davo odatda 28 kun davom etadi va shifokor nazoratida olinadi.</span></div>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="glass hov p-6 rv"><div class="text-3xl mb-2">🩹</div><h3 class="font-extrabold text-lg mb-2">Teri kesilsa yoki igna sanchilsa</h3>
+      <ol class="ol list-decimal ml-5" style="color:var(--mu)"><li>Joyni oqar suv va sovun bilan yaxshilab yuv.</li><li>Yarani siqma, ishqalama va ogʻzing bilan soʻrma.</li><li>Toza bint yoki plastir bilan yop.</li><li>Zudlik bilan tibbiyot muassasasiga bor.</li></ol></div>
+    <div class="glass hov p-6 rv"><div class="text-3xl mb-2">👁️</div><h3 class="font-extrabold text-lg mb-2">Koʻz, ogʻiz yoki burunga qon tegsa</h3>
+      <ol class="ol list-decimal ml-5" style="color:var(--mu)"><li>Koʻzni ancha vaqt toza oqar suv bilan chayqa.</li><li>Ogʻiz boʻshligʻini suv bilan chayib tashla, yutma.</li><li>Ishqalama.</li><li>Darhol shifokorga murojaat qil.</li></ol></div>
+    <div class="glass hov p-6 rv"><div class="text-3xl mb-2">🚑</div><h3 class="font-extrabold text-lg mb-2">Himoyalanmagan aloqadan keyin</h3>
+      <ol class="ol list-decimal ml-5" style="color:var(--mu)"><li>Yuvinish infeksiyaning oldini <b>olmaydi</b> — kutib turma.</li><li>72 soat ichida OITS markazi yoki shifoxonaga bor.</li><li>PEP haqida soʻra.</li><li>Keyinchalik testni 6 va 12 haftada takrorla.</li></ol></div>
+  </div>
+  <p class="glass mt-5 p-5 rv">🚨 <b>Shoshilinch holatda</b> <b class="grad">103</b> raqamiga qoʻngʻiroq qil yoki eng yaqin tibbiyot muassasasiga bor. Shifokorga voqeani ochiq ayt — maxfiylik saqlanadi.</p>
+</section>
+
+<!-- AFSONA -->
+<section id="afsona">
+  <div class="rv"><h2>Afsona va <span class="grad">Haqiqat</span></h2>
+  <p class="sub">Kartani bos — haqiqatni koʻr.</p></div>
+  <div id="myths" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="rv"><h2>Mini-<span class="grad">Viktorina</span></h2>
+  <p class="sub">8 ta savol. Bilimingni sinab koʻr!</p></div>
+  <div class="glass p-6 md:p-9 max-w-3xl rv" id="qbox"></div>
+</section>
+
+<!-- HIMOYA -->
+<section id="himoya">
+  <div class="rv"><h2>Himoya va <span class="grad">Yordam</span></h2>
+  <p class="sub">Oʻzingni va yaqinlaringni asrash uchun 3 oddiy qadam.</p></div>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="glass hov p-6 rv"><div class="num">1</div><h3 class="font-extrabold text-xl mb-2">Himoyalan</h3><p style="color:var(--mu)">Jinsiy aloqada har safar prezervativdan foydalan. Bu OIVdan ham, boshqa infeksiyalardan ham asraydi.</p></div>
+    <div class="glass hov p-6 rv"><div class="num">2</div><h3 class="font-extrabold text-xl mb-2">Faqat yangi, steril asbob</h3><p style="color:var(--mu)">Igna, shprits, ustara va tatuirovka asboblarini hech kim bilan ulashma. Faqat sertifikatli joylarga bor.</p></div>
+    <div class="glass hov p-6 rv"><div class="num">3</div><h3 class="font-extrabold text-xl mb-2">Test qil, statusingni bil</h3><p style="color:var(--mu)">Test oddiy va tez. Natija maxfiy saqlanadi. Bilish — nazorat qilish demakdir.</p></div>
+  </div>
+  <div class="glass mt-6 p-7 rv grid md:grid-cols-2 gap-6 items-center" style="border-color:rgba(239,68,68,.5)">
+    <div>
+      <h3 class="text-2xl font-extrabold mb-2">🤝 Yolgʻiz emassan</h3>
+      <p style="color:var(--mu)">OIVga test topshirish va maslahat olish mumkin boʻlgan joylar — hududlardagi <b class="text-white">OITSga qarshi kurashish markazlari</b>. Testni anonim va maxfiy oʻtkazish mumkin. Yashash joyingdagi markaz manzili va ish vaqtini poliklinikangdan yoki viloyat sogʻliqni saqlash boshqarmasidan soʻrab ol.</p>
+    </div>
+    <div class="text-center md:text-left">
+      <div class="text-sm" style="color:var(--mu)">Shoshilinch tibbiy yordam</div>
+      <div class="text-5xl font-extrabold grad my-1" id="num">103</div>
+      <button class="btn btn-p mt-2" id="copy">📋 Raqamni nusxalash</button>
+      <div class="text-sm mt-2" id="cmsg" style="color:var(--green);min-height:1.3rem" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+<!-- FAQ -->
+<section id="faq">
+  <div class="rv"><h2>Koʻp beriladigan <span class="grad">savollar</span></h2><p class="sub">Soʻrashdan uyalma — hamma shu savollarni oʻylaydi.</p></div>
+  <div class="max-w-3xl rv">
+    <details class="fq glass"><summary>OIV bor odam bilan birga yashash xavflimi?</summary><p>Yoʻq. Umumiy xona, oshxona, hojatxona va maishiy buyumlar xavfsiz. Faqat qon tegishi mumkin boʻlgan buyumlarni (ustara, tish choʻtkasi) alohida ishlatgan maʼqul.</p></details>
+    <details class="fq glass"><summary>Natijam ijobiy chiqsa, kimga aytishim shart?</summary><p>Birinchi navbatda shifokoringga. Boshqalarga aytish yoki aytmaslik — oʻz tanlovingdir. Jinsiy sherigingga xabar berish esa uni himoya qilish uchun muhim; bunda shifokor yoki maslahatchi yordam beradi.</p></details>
+    <details class="fq glass"><summary>OIV bor odam oila qurishi va farzand koʻrishi mumkinmi?</summary><p>Ha. Davolanish va shifokor nazoratida sherik va bolaga yuqish xavfi juda past boʻladi.</p></details>
+    <details class="fq glass"><summary>OIV bor odamni ishdan yoki oʻqishdan chetlatish mumkinmi?</summary><p>Yoʻq. OIV bor odam oʻqish, ishlash va jamiyat hayotida teng qatnashish huquqiga ega. Kamsitish — notoʻgʻri va qonunga ziddir.</p></details>
+    <details class="fq glass"><summary>Doʻstim OIV bor desa, men nima qilishim kerak?</summary><p>Quloq sol, hukm chiqarma, oldingidek doʻst boʻl. Uni shifokorga borib, davolanishga undash eng katta yordam.</p></details>
+  </div>
+</section>
+</main>
+
+<footer class="text-center px-5 py-12 border-t" style="border-color:var(--line)">
+  <svg class="mx-auto mb-3" width="44" height="44" viewBox="0 0 120 120" aria-hidden="true"><use href="#rib"/></svg>
+  <p class="font-extrabold text-lg">Bilim bering. Tazyiq qilmang. Hayot asrang.</p>
+  <p class="text-sm mt-2 max-w-xl mx-auto" style="color:var(--mu)">Bu sahifa taʼlim maqsadida tayyorlangan va shifokor maslahatini almashtirmaydi. Savollaring boʻlsa, mutaxassisga murojaat qil.</p>
+  <div class="nl flex justify-center gap-5 mt-5 text-sm"><a href="#nima">Nima bu?</a><a href="#yuqish">Yuqish</a><a href="#afsona">Afsonalar</a><a href="#quiz">Viktorina</a><a href="#himoya">Yordam</a></div>
+  <p class="text-xs mt-6" style="color:var(--mu)">© 2026 OITSga Qarshi · Qizil tasma — hamdardlik ramzi</p>
+</footer>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+/* scroll reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* tabs */
+const DATA={
+ r:[["🧬","Himoyalanmagan jinsiy aloqa","Prezervativsiz aloqa eng keng tarqalgan yuqish yoʻli."],
+    ["💉","Umumiy igna va shprits","Qon qoldigʻi boʻlgan asboblar virusni toʻgʻridan-toʻgʻri oʻtkazadi."],
+    ["🩸","Steril boʻlmagan asboblar","Tozalanmagan tatuirovka, pirsing va manikyur asboblari xavfli."],
+    ["🤰","Onadan bolaga","Homiladorlik, tugʻruq va emizish davrida. Davolanish bilan xavf juda kamayadi."]],
+ g:[["🤗","Quchoqlashish va qoʻl berish","Odatiy muloqot butunlay xavfsiz."],
+    ["🍽️","Umumiy idish va ovqat","Bir stolda ovqatlanish, bir kosadan ichish xavfsiz."],
+    ["🦟","Chivin va hasharotlar chaqishi","Hasharotlar OIVni tarqatmaydi."],
+    ["🏊","Basseyn, dush, hojatxona","Suv va umumiy sanitariya joylari orqali yuqmaydi."],
+    ["🤧","Yoʻtal va aksirish","OIV havo-tomchi yoʻli bilan tarqalmaydi."],
+    ["🎓","Birga oʻqish va ishlash","Sinfdosh, doʻst yoki hamkasb bilan aloqa xavfsiz."]]
+};
+function showTab(k){
+  document.querySelectorAll('.tab').forEach(b=>{b.className='tab'+(b.dataset.t===k?' on-'+k:'')});
+  $('#tabbox').innerHTML=DATA[k].map((d,i)=>`<div class="item ${k}" style="animation-delay:${i*70}ms"><div class="ic">${d[0]}</div><div><b>${d[1]}</b><div class="text-sm" style="color:var(--mu)">${d[2]}</div></div></div>`).join('');
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.t));
+showTab('r');
+
+/* myths */
+const MY=[
+ ["OIV bilan yashovchi odam bilan qoʻl berib koʻrishish xavflimi?","Yoʻq. OIV teri orqali, qoʻl berish yoki quchoqlash bilan yuqmaydi."],
+ ["Chivin chaqsa, OIV yuqadi.","Yoʻq. Hasharotlar organizmida OIV koʻpaymaydi va chaqish orqali tarqalmaydi."],
+ ["OIV — bu oʻlim hukmi.","Yoʻq. Zamonaviy davolash bilan OIV bor odamlar uzoq va sifatli umr koʻradi."],
+ ["Bu faqat «boshqa» odamlarga tegishli.","Yoʻq. OIV yoshi, jinsi yoki kimligidan qat’i nazar har kimga yuqishi mumkin."],
+ ["Odamga qarab OIV borligini bilsa boʻladi.","Yoʻq. Yillar davomida hech qanday alomat boʻlmasligi mumkin. Faqat test aniq javob beradi."],
+ ["OIV bor ayol sogʻlom bola tugʻa olmaydi.","Mumkin. Oʻz vaqtida davolanganda aksariyat hollarda bola sogʻlom tugʻiladi."]
+];
+$('#myths').innerHTML=MY.map((m,i)=>`<button class="flip rv" aria-pressed="false"><div class="fi">
+ <div class="face glass"><span class="tag" style="color:var(--red)">❌ Afsona #${i+1}</span><p class="font-bold text-lg">${m[0]}</p><span class="text-sm" style="color:var(--mu)">Bosib haqiqatni koʻr →</span></div>
+ <div class="face glass back"><span class="tag" style="color:var(--green)">✅ Haqiqat</span><p class="font-medium">${m[1]}</p><span class="text-sm" style="color:var(--mu)">← Qaytish</span></div></div></button>`).join('');
+document.querySelectorAll('.flip').forEach(c=>{io.observe(c);c.onclick=()=>{c.classList.toggle('open');c.setAttribute('aria-pressed',c.classList.contains('open'))}});
+
+/* quiz */
+const Q=[
+ ["OIV nimaning qisqartmasi?",["Insonning immun tanqisligi virusi","Orttirilgan immun tanqisligi sindromi","Oʻpka infeksiyasi virusi"],0,"OIV — virusning oʻzi. Sindrom (OITS) esa davolanmagan OIVning kech bosqichi."],
+ ["Quyidagilardan qaysi biri orqali OIV yuqmaydi?",["Umumiy shprits","Quchoqlashish va qoʻl berib koʻrishish","Himoyalanmagan jinsiy aloqa"],1,"Oddiy muloqot — quchoqlash, qoʻl berish, birga ovqatlanish — butunlay xavfsiz."],
+ ["Oʻz vaqtida davolanayotgan (ART) OIV bor odam…",["Bir necha yilda vafot etadi","Uzoq va toʻliq hayot kechira oladi","Hech qachon ishlay olmaydi"],1,"Zamonaviy davolash virusni nazoratda ushlab, odamga odatiy hayot kechirish imkonini beradi."],
+ ["OIV borligini aniq bilishning yagona ishonchli yoʻli qaysi?",["Tashqi koʻrinishga qarash","Holsizlikni kuzatish","Laboratoriya testi"],2,"Alomatlar yillar davomida boʻlmasligi mumkin. Faqat test ishonchli javob beradi."],
+ ["Chivin chaqishi orqali OIV yuqadimi?",["Ha, doimo","Faqat yozda","Yoʻq, yuqmaydi"],2,"Hasharotlar OIVni tarqatmaydi — bu keng tarqalgan afsona."],
+ ["PEP nima?",["OIVga qarshi emlash","Xavfli holatdan keyin 72 soat ichida boshlanadigan oldini oluvchi davo","Vitamin kursi"],1,"PEP — xavfli holatdan keyin imkon qadar tez boshlanadigan 28 kunlik davo. Qanchalik erta boshlansa, shunchalik samarali."],
+ ["Tezkor testda ijobiy natija chiqsa, keyingi qadam qaysi?",["Laboratoriyada tasdiqlash testi","Hech narsa qilmaslik","Boshqa shaharga koʻchish"],0,"Tezkor test dastlabki natijadir. Tasdiqlash testidan keyin shifokor davolashni boshlaydi."],
+ ["U = U nimani anglatadi?",["Hamma OIVli odamlar virusni yuqtiradi","Test qilishning keragi yoʻq","Davolanayotgan, virus miqdori aniqlanmaydigan odam jinsiy yoʻl bilan yuqtirmaydi"],2,"Uzluksiz davolanish nafaqat sogʻligʻingni asraydi, balki sherigingni ham himoya qiladi."]
+];
+let qi=0,sc=0;
+function renderQ(){
+  const q=Q[qi];
+  $('#qbox').innerHTML=`<div class="flex justify-between text-sm mb-2" style="color:var(--mu)"><span>Savol ${qi+1} / ${Q.length}</span><span>Ball: ${sc}</span></div>
+  <div class="bar mb-6"><i style="width:${qi/Q.length*100}%"></i></div>
+  <h3 class="text-xl md:text-2xl font-extrabold">${q[0]}</h3>
+  <div id="opts">${q[1].map((o,i)=>`<button class="opt" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div>
+  <div id="fb" style="min-height:4.5rem" aria-live="polite"></div>`;
+  document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.i));
+}
+function answer(i){
+  const q=Q[qi],ok=i===q[2];if(ok)sc++;
+  document.querySelectorAll('.opt').forEach((b,j)=>{b.disabled=true;if(j===q[2])b.classList.add('ok');else if(j===i)b.classList.add('no')});
+  $('#fb').innerHTML=`<p class="mt-4 p-4 rounded-xl" style="background:${ok?'rgba(34,197,94,.12)':'rgba(239,68,68,.12)'}"><b style="color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ Toʻgʻri!':'❌ Notoʻgʻri.'}</b> ${q[3]}</p>
+  <button class="btn btn-p mt-4" id="nx">${qi<Q.length-1?'Keyingi savol →':'Natijani koʻrish'}</button>`;
+  $('#nx').onclick=()=>{qi++;qi<Q.length?renderQ():result()};
+}
+function result(){
+  const t=sc===Q.length?["🏆","Chempion!","Sen OIV haqida hammasini bilasan. Bilimingni doʻstlaring bilan ulash!"]:sc>=5?["🌟","Juda yaxshi!","Bilimlaring yaxshi. Afsonalar boʻlimini qayta koʻrib chiq — yana kuchliroq boʻlasan."]:["📚","Yaxshi boshlanish!","Yuqoridagi boʻlimlarni oʻqib, viktorinani qayta urinib koʻr."];
+  $('#qbox').innerHTML=`<div class="text-center py-4"><div class="text-6xl mb-2">${t[0]}</div><div class="bar mb-6"><i style="width:100%"></i></div>
+  <div class="inline-block glass px-6 py-2 text-3xl font-extrabold grad mb-3">${sc} / ${Q.length}</div>
+  <h3 class="text-2xl font-extrabold">${t[1]}</h3><p class="mt-2 mb-6" style="color:var(--mu)">${t[2]}</p>
+  <button class="btn btn-p" id="rs">🔄 Qayta boshlash</button></div>`;
+  $('#rs').onclick=()=>{qi=0;sc=0;renderQ()};
+}
+renderQ();
+
+/* calculator */
+const fmt=d=>String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+d.getFullYear();
+const add=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+$('#cd').max=new Date().toISOString().slice(0,10);
+$('#calc').onclick=()=>{
+  const v=$('#cd').value,o=$('#cout');
+  if(!v){o.innerHTML='<p style="color:var(--mu)">Avval sanani tanla.</p>';return}
+  const d=new Date(v+'T00:00:00'),now=new Date(),days=Math.floor((now-d)/864e5);
+  if(days<0){o.innerHTML='<p style="color:var(--mu)">Sana kelajakda boʻlishi mumkin emas.</p>';return}
+  const rows=[
+   ['🚨','PEP (oldini oluvchi davo)',days<=3?'Hali vaqt bor! Imkon qadar tezroq, eng kechi '+fmt(add(d,3))+' gacha tibbiyot muassasasiga murojaat qil.':'72 soat oʻtib ketgan. Baribir shifokorga murojaat qil — u vaziyatni baholaydi.','r'],
+   ['🧪','Dastlabki test (6 hafta): '+fmt(add(d,42)),now>=add(d,42)?'Vaqti keldi — test qilishing mumkin.':'Hali erta — shu sanadan keyin test qil.','g'],
+   ['✅','Yakuniy test (3 oy): '+fmt(add(d,84)),now>=add(d,84)?'Vaqti keldi — yakuniy tasdiq uchun test qil.':'Natijani aniq tasdiqlash uchun shu sanadan keyin takrorla.','g']
+  ];
+  o.innerHTML=rows.map((r,i)=>`<div class="item ${r[3]}" style="animation-delay:${i*80}ms"><div class="ic">${r[0]}</div><div><b>${r[1]}</b><div class="text-sm" style="color:var(--mu)">${r[2]}</div></div></div>`).join('');
+};
+
+/* copy */
+$('#copy').onclick=async()=>{
+  const v=$('#num').textContent.trim();let ok=false;
+  try{await navigator.clipboard.writeText(v);ok=true}catch(e){
+    try{const t=document.createElement('textarea');t.value=v;document.body.appendChild(t);t.select();ok=document.execCommand('copy');t.remove()}catch(e2){}
+  }
+  $('#cmsg').textContent=ok?'Nusxalandi: '+v:'Raqamni qoʻlda nusxalang: '+v;
+  setTimeout(()=>$('#cmsg').textContent='',2500);
+};
+</script>
+</body>
+</html>
