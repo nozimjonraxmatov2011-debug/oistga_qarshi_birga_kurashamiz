@@ -1,0 +1,1 @@
+# oistga_qarshi_birga_kurashamiz
